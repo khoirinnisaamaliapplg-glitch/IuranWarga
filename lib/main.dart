@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pertemuanpertama/LoginPage.dart';
 
 void main() {
   runApp(const MainApp());
@@ -9,13 +10,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-     title: 'Aplikasi Flutter',
+    return MaterialApp(
+      title: 'Aplikasi Kas Warga',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-     debugShowCheckedModeBanner: false,
-     home:,
-       );
+      debugShowCheckedModeBanner: false,
+      home:Loginpage(),
+    );
   }
 }
+
+
