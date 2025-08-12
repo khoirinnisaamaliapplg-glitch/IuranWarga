@@ -1,4 +1,4 @@
-// lib/widgets/drawer_menu.dart
+
 import 'package:flutter/material.dart';
 import 'package:pertemuanpertama/ProfilePage.dart';
 
@@ -33,7 +33,7 @@ class DrawerMenu extends StatelessWidget {
             ),
             _buildDrawerItem('🏠', 'Beranda', () => onItemTap('beranda')),
             _buildDrawerItem('👤', 'Profil', () {
-              Navigator.pop(context); // tutup drawer dulu
+              Navigator.pop(context); 
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const Profilepage()),

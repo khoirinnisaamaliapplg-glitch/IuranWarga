@@ -16,7 +16,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1C2C), // Background gelap
+      backgroundColor: const Color(0xFF0B1C2C), 
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(24),
@@ -46,12 +46,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                // Username Field
+                
                 TextFormField(
                   controller: _usernameController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFFEAF1FF), // Biru muda
+                    fillColor: const Color(0xFFEAF1FF), 
                     hintText: 'Masukkan Username',
                     contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
@@ -67,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 16),
-                // Password Field
+                
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 24),
-                // Login Button
+                
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(

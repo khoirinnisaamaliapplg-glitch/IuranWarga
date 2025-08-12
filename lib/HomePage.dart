@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
               builder: (context, constraints) {
                 double cardWidth = (constraints.maxWidth / 3) - 16;
 
-                // Kalau layar kecil, atur jadi 1 atau 2 kolom
+                
                 if (constraints.maxWidth < 600) {
                   cardWidth = (constraints.maxWidth / 2) - 12;
                 }
