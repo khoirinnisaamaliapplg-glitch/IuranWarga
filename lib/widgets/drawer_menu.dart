@@ -1,5 +1,6 @@
 // lib/widgets/drawer_menu.dart
 import 'package:flutter/material.dart';
+import 'package:pertemuanpertama/ProfilePage.dart';
 
 class DrawerMenu extends StatelessWidget {
   final Function(String) onItemTap;
@@ -31,6 +32,13 @@ class DrawerMenu extends StatelessWidget {
               child: Divider(color: Colors.white38),
             ),
             _buildDrawerItem('🏠', 'Beranda', () => onItemTap('beranda')),
+            _buildDrawerItem('👤', 'Profil', () {
+              Navigator.pop(context); // tutup drawer dulu
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Profilepage()),
+              );
+            }),
             _buildDrawerItem(
                 '📁', 'Kategori Iuran', () => onItemTap('kategori')),
             _buildDrawerItem('💰', 'Iuran Warga', () => onItemTap('iuran')),
