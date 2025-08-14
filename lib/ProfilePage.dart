@@ -87,11 +87,56 @@ class _ProfilepageState extends State<Profilepage> {
                 ],
               ),
               const SizedBox(height: 24),
-              const Divider(
-                thickness: 1.2,
-                color: Colors.black12,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: const [
+                      Text('150',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
+                      SizedBox(height: 4),
+                      Text('Followers',
+                          style: TextStyle(color: Colors.grey, fontSize: 14)),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text('200',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
+                      SizedBox(height: 4),
+                      Text('Following',
+                          style: TextStyle(color: Colors.grey, fontSize: 14)),
+                    ],
+                  ),
+                  Column(
+                    children: const [
+                      Text('35',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 16)),
+                      SizedBox(height: 4),
+                      Text('Posts',
+                          style: TextStyle(color: Colors.grey, fontSize: 14)),
+                    ],
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 24),
+              const Text(
+                'Tentang Saya',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF0B1C2C),
+                ),
+              ),
+              const SizedBox(height: 8),
+              const Text(
+                'Saya seorang pelajar SMK yang rajin, cekatan, dan selalu ingin belajar hal baru, terutama di bidang teknologi dan desain.',
+                style: TextStyle(fontSize: 14, color: Colors.grey),
+              ),
+              const SizedBox(height: 24),
               Row(
                 children: const [
                   Icon(Icons.location_on, color: Colors.grey),
@@ -127,6 +172,38 @@ class _ProfilepageState extends State<Profilepage> {
                     elevation: 4,
                   ),
                 ),
+              ),
+              const SizedBox(height: 16),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.message),
+                    label: const Text('WhatsApp'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(Icons.work),
+                    label: const Text('LinkedIn'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 20),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
