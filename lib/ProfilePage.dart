@@ -46,10 +46,8 @@ class _ProfilepageState extends State<Profilepage> {
                       ],
                     ),
                     child: const CircleAvatar(
-                      radius:
-                          50, 
-                      backgroundImage:
-                          NetworkImage('https://i.pravatar.cc/150?img=3'),
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/amel.jpg'),
                     ),
                   ),
                   const SizedBox(width: 20),
@@ -60,7 +58,7 @@ class _ProfilepageState extends State<Profilepage> {
                         Text(
                           'Khoirin Nisa Amalia',
                           style: TextStyle(
-                            fontSize: 20, 
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: Color(0xFF0B1C2C),
                           ),
@@ -69,7 +67,7 @@ class _ProfilepageState extends State<Profilepage> {
                         Text(
                           'khoirin.nisa@gmail.com',
                           style: TextStyle(
-                            fontSize: 14, 
+                            fontSize: 14,
                             color: Colors.grey,
                             letterSpacing: 0.5,
                           ),
@@ -78,7 +76,7 @@ class _ProfilepageState extends State<Profilepage> {
                         Text(
                           '+62 877-5351-4067',
                           style: TextStyle(
-                            fontSize: 14, 
+                            fontSize: 14,
                             color: Colors.grey,
                             letterSpacing: 0.5,
                           ),
@@ -114,12 +112,11 @@ class _ProfilepageState extends State<Profilepage> {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                  },
+                  onPressed: () {},
                   icon: const Icon(Icons.edit),
                   label: const Text(
                     'Edit Profil',
-                    style: TextStyle(fontSize: 16), 
+                    style: TextStyle(fontSize: 16),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0B1C2C),
