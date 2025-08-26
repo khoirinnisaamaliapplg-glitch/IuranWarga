@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:pertemuanpertama/ProfilePage.dart';
+import 'package:pertemuanpertama/profilePage.dart';
+
 
 class DrawerMenu extends StatelessWidget {
   final Function(String) onItemTap;
@@ -36,7 +37,7 @@ class DrawerMenu extends StatelessWidget {
               Navigator.pop(context); 
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Profilepage()),
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
               );
             }),
             _buildDrawerItem(

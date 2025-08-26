@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pertemuanpertama/HomePage.dart';
+import 'package:pertemuanpertama/api_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -10,13 +11,15 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _usernameController = TextEditingController();
+  final ApiService apiService = ApiService();
+  final TextEditingController _emailController = TextEditingController(); 
   final TextEditingController _passwordController = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B1C2C), 
+      backgroundColor: const Color(0xFF0B1C2C),
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(24),
@@ -46,14 +49,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                
                 TextFormField(
-                  controller: _usernameController,
+                  controller: _emailController,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFFEAF1FF), 
-                    hintText: 'Masukkan Username',
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    fillColor: const Color(0xFFEAF1FF),
+                    hintText: 'Masukkan Email',
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -61,21 +64,21 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Username tidak boleh kosong';
+                      return 'Email tidak boleh kosong';
                     }
                     return null;
                   },
                 ),
                 const SizedBox(height: 16),
-                
                 TextFormField(
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: const Color(0xFFEAF1FF), // Biru muda
+                    fillColor: const Color(0xFFEAF1FF),
                     hintText: 'Masukkan Password',
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: BorderSide.none,
@@ -89,33 +92,50 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
                 const SizedBox(height: 24),
-                
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_formKey.currentState!.validate()) {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (_) => const HomePage()),
-                        );
+                        setState(() => _isLoading = true);
+
+                        try {
+                          final token = await apiService.login(
+                            _emailController.text,
+                            _passwordController.text,
+                          );
+                          debugPrint("TOKEN: $token");
+
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (_) => const HomePage()),
+                          );
+                        } catch (e) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(e.toString())),
+                          );
+                        }
+
+                        setState(() => _isLoading = false);
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF0B1C2C), // Warna tombol
+                      backgroundColor: const Color(0xFF0B1C2C),
                       padding: const EdgeInsets.symmetric(vertical: 14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                    child: const Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
+                    child: _isLoading
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
+                            'Login',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
                   ),
                 ),
               ],
