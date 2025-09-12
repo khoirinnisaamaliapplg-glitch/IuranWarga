@@ -12,7 +12,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final ApiService apiService = ApiService();
-  final TextEditingController _emailController = TextEditingController(); 
+  final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _isLoading = false;
 
@@ -50,11 +50,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 const SizedBox(height: 24),
                 TextFormField(
-                  controller: _emailController,
+                  controller: _usernameController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: const Color(0xFFEAF1FF),
-                    hintText: 'Masukkan Email',
+                    hintText: 'Masukkan Username',
                     contentPadding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 14),
                     border: OutlineInputBorder(
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Email tidak boleh kosong';
+                      return 'Username tidak boleh kosong';
                     }
                     return null;
                   },
@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         try {
                           final token = await apiService.login(
-                            _emailController.text,
+                            _usernameController.text,
                             _passwordController.text,
                           );
                           debugPrint("TOKEN: $token");

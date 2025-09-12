@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Future<void> fetchProfile() async {
     try {
-      final data = await apiService.getUserProfile(2); // ambil user dengan id=2
+      final data = await apiService.getUserProfile(); 
       setState(() {
         user = data;
         _isLoading = false;
@@ -57,8 +57,8 @@ class _ProfilePageState extends State<ProfilePage> {
               ? const Center(child: Text("Data user tidak tersedia"))
               : SafeArea(
                   child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 20),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,7 +67,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             CircleAvatar(
                               radius: 50,
-                              backgroundImage: NetworkImage(user!["avatar"]),
+                              backgroundImage: NetworkImage(user!["image"]),
                             ),
                             const SizedBox(width: 20),
                             Expanded(
@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "${user!["first_name"]} ${user!["last_name"]}",
+                                    "${user!["firstName"]} ${user!["lastName"]}",
                                     style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,

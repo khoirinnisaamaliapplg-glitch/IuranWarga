@@ -2,40 +2,37 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class ApiService {
-  final String baseUrl = "https://reqres.in/api";
+  final String baseUrl = "https://dummyjson.com";
+  String? _accessToken;
+  Map<String, dynamic>? _userData; 
 
-  
-  Future<String> login(String email, String password) async {
+  // Login
+  Future<String> login(String username, String password) async {
     final response = await http.post(
-      Uri.parse("$baseUrl/login"),
+      Uri.parse("$baseUrl/auth/login"),
       headers: {"Content-Type": "application/json"},
-      body: json.encode({"email": email, "password": password}),
+      body: json.encode({"username": username, "password": password}),
     );
 
     print("Status Code: ${response.statusCode}");
     print("Response Body: ${response.body}");
 
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data["token"];
+    final data = json.decode(response.body);
+
+    if (response.statusCode == 200 && data["accessToken"] != null) {
+      _accessToken = data["accessToken"];
+      _userData = data; 
+      return _accessToken!;
     } else {
-      final error = json.decode(response.body);
-      throw Exception(error["error"] ?? "Login gagal");
+      throw Exception(data["message"] ?? "Login gagal");
     }
   }
 
-  
-  Future<Map<String, dynamic>> getUserProfile(int id) async {
-    final response = await http.get(Uri.parse("$baseUrl/users/$id"));
-
-    print("Status Code: ${response.statusCode}");
-    print("Response Body: ${response.body}");
-
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body);
-      return data["data"];
-    } else {
-      throw Exception("Gagal mengambil data user");
+  // Ambil profile user login
+  Future<Map<String, dynamic>> getUserProfile() async {
+    if (_userData == null) {
+      throw Exception("Belum login! Silakan login dulu.");
     }
+    return _userData!;
   }
 }
